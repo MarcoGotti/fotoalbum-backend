@@ -42,9 +42,9 @@ class PhotoController extends Controller
         $validatedData = $request->validated();
         $validatedData['slug'] = Str::of($request->title)->slug('-');
         //dd($validatedData);
-        Photo::create($validatedData);
+        $photo = Photo::create($validatedData);
 
-        return to_route('admin.photos.index')->with('message', 'You got it');
+        return to_route('admin.photos.show', $photo)->with('message', 'You got it');
     }
 
     /**
@@ -62,7 +62,8 @@ class PhotoController extends Controller
      */
     public function edit(Photo $photo)
     {
-        //
+        $owner_data = User::all();
+        return view('admin.photos.edit', compact('photo', 'owner_data'));
     }
 
     /**
@@ -70,7 +71,13 @@ class PhotoController extends Controller
      */
     public function update(UpdatePhotoRequest $request, Photo $photo)
     {
-        //
+        //dd($request->all());
+        $validatedData = $request->validated();
+        $validatedData['slug'] = Str::of($request->title)->slug('-');
+        //dd($validatedData);
+        $photo->update($validatedData);
+
+        return to_route('admin.photos.show', $photo)->with('message', 'It\'s updated');
     }
 
     /**
@@ -78,6 +85,7 @@ class PhotoController extends Controller
      */
     public function destroy(Photo $photo)
     {
-        //
+        $photo->delete();
+        return redirect()->back()->with('message', 'Successfully deleted');
     }
 }

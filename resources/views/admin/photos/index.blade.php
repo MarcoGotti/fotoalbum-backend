@@ -12,11 +12,9 @@
     </header>
 
     <div class="container">
-        @if (session('message'))
-            <div class="alert alert-success">
-                <strong>Great!</strong>{{ session('message') }}
-            </div>
-        @endif
+
+        @include('admin.partials.success_message')
+
         <div class="table-responsive">
             <table class="table table-striped table-hover table-secondary align-middle">
                 <thead class="table-light">
@@ -61,11 +59,47 @@
                                     <a class="text-black" href="{{ route('admin.photos.show', $photo) }}">
                                         <i class="fa fa-eye" aria-hidden="true"></i></a>
 
-                                    <a class="text-black mx-auto" href="{{ route('admin.photos.show', $photo) }}">
+                                    <a class="text-black mx-auto" href="{{ route('admin.photos.edit', $photo) }}">
                                         <i class="fa fa-pencil" aria-hidden="true"></i></a>
-
-                                    <a class="text-black" href="{{ route('admin.photos.show', $photo) }}">
+                                    <!-- Button trigger modal -->
+                                    <a class="text-black" data-bs-toggle="modal"
+                                        data-bs-target="#modalId{{ $photo->id }}"
+                                        href="{{ route('admin.photos.show', $photo) }}">
                                         <i class="fa fa-trash" aria-hidden="true"></i></a>
+
+
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modalId{{ $photo->id }}" tabindex="-1" role="dialog"
+                                        aria-labelledby="modalTitleId{{ $photo->id }}" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <p class="modal-title text-light" id="modalTitleId{{ $photo->id }}">
+                                                        Sure you want to delete?
+                                                    </p>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body overflow-y-scroll" style="height: 300px">
+                                                    <img width="100%" src="{{ $photo->upload }}" alt="">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-sm btn-secondary"
+                                                        data-bs-dismiss="modal">
+                                                        No
+                                                        <form action="{{ route('admin.photos.destroy', $photo) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+
+                                                            <button class="btn btn-sm btn-danger" type="submit">Yes,
+                                                                delete</button>
+                                                        </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </td>
                         </tr>

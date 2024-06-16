@@ -11,6 +11,8 @@
         </div>
     </header>
 
+    @include('admin.partials.success_message')
+
     <div class="container padding_show my-3">
         <div class="row row-cols-1 row-cols-md-2">
 
