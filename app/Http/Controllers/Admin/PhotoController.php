@@ -45,7 +45,9 @@ class PhotoController extends Controller
      */
     public function show(Photo $photo)
     {
-        //
+        //dd($photo);
+        $owner_data = User::all();
+        return view('admin.photos.show', compact('photo', 'owner_data'));
     }
 
     /**

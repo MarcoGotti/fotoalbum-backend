@@ -20,6 +20,7 @@
                         <th>Upload</th>
                         <th>Title</th>
                         <th>Slug</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
 
@@ -50,6 +51,18 @@
                             </td>
                             <td>{{ $photo->title }}</td>
                             <td>{{ $photo->slug }}</td>
+                            <td>
+                                <div class="d-flex me-3">
+                                    <a class="text-black" href="{{ route('admin.photos.show', $photo) }}">
+                                        <i class="fa fa-eye" aria-hidden="true"></i></a>
+
+                                    <a class="text-black mx-auto" href="{{ route('admin.photos.show', $photo) }}">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i></a>
+
+                                    <a class="text-black" href="{{ route('admin.photos.show', $photo) }}">
+                                        <i class="fa fa-trash" aria-hidden="true"></i></a>
+                                </div>
+                            </td>
                         </tr>
                     @empty
                         <tr>
