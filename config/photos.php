@@ -3,19 +3,19 @@
 return [
     'photos' => [
         [
-            "title" => "Pine forest",
+            "title" => "Cactus blossom",
             "description" => "Great natural picture lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus temporibus perspiciatis, sunt laudantium culpa quod quia numquam atque nisi, aperiam optio accusantium. Molestiae, fugit quaerat eveniet quas voluptates soluta itaque.",
-            "upload" => "https://images.unsplash.com/photo-1662220213379-6463b026d6cf?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "upload" => "https://images.unsplash.com/photo-1718058104659-99988aac8a3b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDM0fDZzTVZqVExTa2VRfHxlbnwwfHx8fHw%3D",
             "Photographer" => "John Doe"
         ],
         [
-            "title" => "Everest",
+            "title" => "Himalaya",
             "description" => "Great natural picture lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus temporibus perspiciatis, sunt laudantium culpa quod quia numquam atque nisi, aperiam optio accusantium. Molestiae, fugit quaerat eveniet quas voluptates soluta itaque.",
             "upload" => "https://images.unsplash.com/photo-1606404349835-582b07e1076d?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             "Photographer" => "Jimmy Page"
         ],
         [
-            "title" => "Sun set",
+            "title" => "Sun downer",
             "description" => "Great natural picture lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus temporibus perspiciatis, sunt laudantium culpa quod quia numquam atque nisi, aperiam optio accusantium. Molestiae, fugit quaerat eveniet quas voluptates soluta itaque.",
             "upload" => "https://images.unsplash.com/photo-1705601934382-368ba35321df?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             "Photographer" => "Jenny Gi"
@@ -293,5 +293,36 @@ return [
             "Photographer" => "Jimmy Page"
         ],
     ],
+
+    'categories' => [
+        'nature',
+        'travels',
+        'animals',
+        'street',
+        'forest',
+        'mountain',
+        'light',
+        'see',
+        'power',
+        'trees',
+        'lonelyness',
+        'sport',
+        'paradise',
+        'orient',
+        'archi',
+        'art',
+        'city',
+        'love',
+        'shoping',
+        'fruits and vegs',
+        'birds',
+        'colors',
+        'freedom',
+        'peace',
+        'fashion',
+        'red',
+        'body',
+        'filter',
+    ]
 
 ];

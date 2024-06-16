@@ -16,14 +16,14 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Usando Vite -->
-    @vite(['resources/js/app.js'])
+    @vite(['resources/scss/app.scss', 'resources/js/app.js'])
 </head>
 
 <body>
     <div id="app">
 
 
-        <nav class="navbar navbar-expand-md navbar-light shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light shadow-lg">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
                     <div class="logo_laravel">
@@ -51,7 +51,7 @@
                             <a class="nav-link" href="{{ url('/') }}">{{ __('Home') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/') }}">{{ __('All') }}</a>
+                            <a class="nav-link" href="{{ route('admin.photos.index') }}">{{ __('Library') }}</a>
                         </li>
                     </ul>
 
@@ -98,6 +98,14 @@
         <main class="">
             @yield('content')
         </main>
+
+        <footer class="shadow-lg text-center py-5">
+            <div>
+                &copy; Copyright of
+                <span>Mr. {{ ucfirst($owner_data[0]->name) }} -</span>
+                <span>email: {{ $owner_data[0]->email }}</span>
+            </div>
+        </footer>
     </div>
 </body>
 

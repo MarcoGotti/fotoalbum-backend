@@ -1,1 +1,12 @@
-@import '~bootstrap/scss/bootstrap'
+@import '~bootstrap/scss/bootstrap';
+
+/* ADMIN */
+/* #region index */
+
+.wrapper{
+    width: 100px;
+    aspect-ratio: 1.5;  
+    cursor: pointer;
+}
+
+/* #endregion index */
