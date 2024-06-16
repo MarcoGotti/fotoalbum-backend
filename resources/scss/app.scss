@@ -1,6 +1,13 @@
 @import '~bootstrap/scss/bootstrap';
 
 /* ADMIN */
+/* #region admin.blade */
+
+#adminMain{
+    min-height: calc(100vh - 10rem)
+}
+
+/* #endregion admin.blade */
 /* #region index */
 
 .wrapper{

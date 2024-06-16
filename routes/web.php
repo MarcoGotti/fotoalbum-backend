@@ -28,8 +28,6 @@ Route::middleware(['auth', 'verified'])
 
 
 
-
-
 Route::get('/', function () {
     return view('welcome');
 });

@@ -55,6 +55,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.photos.index') }}">{{ __('Library') }}</a>
                         </li>
+                        <li class="nav-item">
+                            <a class=" nav-link text-warning" href="{{ route('admin.photos.create') }}"><i
+                                    class="fa fa-plus-square" aria-hidden="true"></i> Add</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -97,11 +101,11 @@
             </div>
         </nav>
 
-        <main class="">
+        <main id="adminMain" class="">
             @yield('content')
         </main>
 
-        <footer class="shadow-lg text-center py-5">
+        <footer id="adminFooter" class="shadow-lg text-center py-5">
             <div>
                 &copy; Copyright of
                 <span>Mr. {{ ucfirst($owner_data[0]->name) }} -</span>

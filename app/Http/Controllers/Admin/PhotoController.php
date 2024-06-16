@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Http\Requests\StorePhotoRequest;
 use App\Http\Requests\UpdatePhotoRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 
 
 use function Ramsey\Uuid\v1;
@@ -29,7 +30,8 @@ class PhotoController extends Controller
      */
     public function create()
     {
-        //
+        $owner_data = User::all();
+        return view('admin.photos.create', compact('owner_data'));
     }
 
     /**
@@ -37,7 +39,12 @@ class PhotoController extends Controller
      */
     public function store(StorePhotoRequest $request)
     {
-        //
+        $validatedData = $request->validated();
+        $validatedData['slug'] = Str::of($request->title)->slug('-');
+        //dd($validatedData);
+        Photo::create($validatedData);
+
+        return to_route('admin.photos.index')->with('message', 'You got it');
     }
 
     /**

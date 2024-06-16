@@ -12,6 +12,11 @@
     </header>
 
     <div class="container">
+        @if (session('message'))
+            <div class="alert alert-success">
+                <strong>Great!</strong>{{ session('message') }}
+            </div>
+        @endif
         <div class="table-responsive">
             <table class="table table-striped table-hover table-secondary align-middle">
                 <thead class="table-light">
@@ -78,6 +83,9 @@
             </table>
             {{ $photos->links('pagination::bootstrap-5') }}
         </div>
+
+        <a class="btn btn-warning border border-1 position-fixed bottom-0 end-0 m-5"
+            href="{{ route('admin.photos.create') }}"><i class="fa fa-plus-square" aria-hidden="true"></i>&nbsp; Add</a>
 
     </div>
 
