@@ -22,7 +22,8 @@
                 <input type="text"
                     class="form-control form-control-sm @error('title') is-invalid                 
                 @enderror"
-                    name="title" aria-describedby="titleHelper" placeholder="Title your picture" />
+                    name="title" aria-describedby="titleHelper" placeholder="Title your picture"
+                    value="{{ old('title') }}" />
                 @error('title')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
@@ -51,7 +52,8 @@
                 <input type="text"
                     class="form-control @error('upload') is-invalid                 
                 @enderror"
-                    name="upload" aria-describedby="uploadUrlHelper" placeholder="es. https:// ...." />
+                    name="upload" aria-describedby="uploadUrlHelper" placeholder="es. https:// ...."
+                    value="{{ old('upload') }}" />
                 @error('upload')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
@@ -63,7 +65,7 @@
                 <textarea
                     class="form-control form-control-sm @error('description') is-invalid                 
                 @enderror"
-                    name="description" rows="3" placeholder="Description here"></textarea>
+                    name="description" rows="3" placeholder="Description here">{{ old('description') }}</textarea>
                 @error('description')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
