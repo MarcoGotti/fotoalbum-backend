@@ -14,6 +14,7 @@
     <div class="container">
 
         @include('admin.partials.success_message')
+        @include('admin.partials.form_errors')
 
         <div class="table-responsive">
             <table class="table table-striped table-hover table-secondary align-middle">
@@ -53,19 +54,22 @@
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content text-light">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="modalTitleId-{{ $cat->id }}">
-                                                        {{ $cat->name }}
-                                                    </h5>
+                                                    <p>You are about to delete this category</p>
+
+
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>sure, you want to delete it?</p>
+                                                    <h4 class="modal-title text-uppercase"
+                                                        id="modalTitleId-{{ $cat->id }}">
+                                                        {{ $cat->name }}
+                                                    </h4>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-sm btn-secondary"
                                                         data-bs-dismiss="modal">
-                                                        No
+                                                        No, don't
                                                         <form action="{{ route('admin.categories.destroy', $cat) }}"
                                                             method="post">
                                                             @csrf
@@ -118,8 +122,13 @@
 
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name your Category</label>
-                                <input type="text" class="form-control form-control-sm" name="name" id="name"
-                                    placeholder="es. Body paint" />
+                                <input type="text"
+                                    class="form-control form-control-sm @error('name') is-invalid                                   
+                                @enderror"
+                                    name="name" id="name" placeholder="es. Body paint" />
+                                @error('name')
+                                    <div class="text-danger"><strong>{{ old('name') }}</strong>: {{ $message }}</div>
+                                @enderror
                             </div>
 
                             <button class="btn btn-light btn-sm" type="submit">Save</button>
@@ -129,21 +138,6 @@
                 </div>
             </div>
         </div>
-
-        <script>
-            var modalId = document.getElementById('modalId');
-
-            modalId.addEventListener('show.bs.modal', function(event) {
-                // Button that triggered the modal
-                let button = event.relatedTarget;
-                // Extract info from data-bs-* attributes
-                let recipient = button.getAttribute('data-bs-whatever');
-
-                // Use above variables to manipulate the DOM
-            });
-        </script>
-
-
     </div>
 
 
