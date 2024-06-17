@@ -27,6 +27,34 @@
                 @enderror
             </div>
 
+            <div class="row flex-wrap my-5">
+                @forelse ($categories as $cat)
+                    <div class="col">
+                        <div class="form-check">
+                            @if ($errors->any())
+                                <input class="form-check-input" type="checkbox" value="{{ $cat->id }}"
+                                    id="cat-{{ $cat->id }}" name="categories[]"
+                                    {{ in_array($cat->id, old('categories', [])) ? 'checked' : '' }} />
+                                <label class="form-check-label" for="cat-{{ $cat->id }}"> {{ $cat->name }} </label>
+                            @else
+                                <input class="form-check-input" type="checkbox" value="{{ $cat->id }}"
+                                    id="cat-{{ $cat->id }}" name="categories[]"
+                                    {{ $photo->categories->contains($cat->id) ? 'checked' : '' }} />
+                                <label class="form-check-label" for="cat-{{ $cat->id }}"> {{ $cat->name }}
+                                </label>
+                            @endif
+                        </div>
+                    </div>
+
+                @empty
+                    <div class="p-3 text-bg-warning">
+                        <div>You haven't got any category in your database!</div>
+                        <div>I recommand you add a few categories to relate to your photos.</div>
+                    </div>
+                @endforelse
+
+            </div>
+
             <div class="d-flex gap-3">
                 <div class="overflow-hidden border border-5 border-secondary rounded" style="height: 140px">
                     <img width="300" src="{{ $photo->upload }}" alt="">

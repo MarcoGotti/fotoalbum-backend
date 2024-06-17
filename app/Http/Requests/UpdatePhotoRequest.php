@@ -26,6 +26,7 @@ class UpdatePhotoRequest extends FormRequest
         return [
             //'title' => 'required|unique:photos,title|min:3|max:30',
             'title' => ['required', 'min:3', 'max:30', Rule::unique('photos')->ignore($this->photo->id)],
+            'categories' => 'exists:categories,id',
             'upload' => ['required', 'max:300', Rule::unique('photos')->ignore($this->photo->id)],
             'description' => 'nullable|min:20'
         ];

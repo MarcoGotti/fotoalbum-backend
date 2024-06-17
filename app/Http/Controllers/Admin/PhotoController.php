@@ -69,7 +69,9 @@ class PhotoController extends Controller
     public function edit(Photo $photo)
     {
         $owner_data = User::all();
-        return view('admin.photos.edit', compact('photo', 'owner_data'));
+        $categories = Category::all();
+
+        return view('admin.photos.edit', compact('photo', 'owner_data', 'categories'));
     }
 
     /**
@@ -77,11 +79,14 @@ class PhotoController extends Controller
      */
     public function update(UpdatePhotoRequest $request, Photo $photo)
     {
-        //dd($request->all());
+        //dd($request->has('categories'));
         $validatedData = $request->validated();
         $validatedData['slug'] = Str::of($request->title)->slug('-');
         //dd($validatedData);
         $photo->update($validatedData);
+        if ($request->has('categories')) {
+            $photo->categories()->sync($validatedData['categories']);
+        }
 
         return to_route('admin.photos.show', $photo)->with('message', 'It\'s updated');
     }

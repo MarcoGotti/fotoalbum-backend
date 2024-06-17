@@ -24,7 +24,8 @@
 
                 <div class="categories d-flex flex-wrap gap-1">
                     @forelse ($photo->categories as $cat)
-                        <a class="btn btn-secondary btn-sm" href="#">{{ $cat->name }}</a>
+                        <a class="btn btn-secondary btn-sm"
+                            href="{{ route('admin.categories.show', $cat) }}">{{ $cat->name }}</a>
                     @empty
                         <div class="text-warning">Still no attached categories</div>
                     @endforelse

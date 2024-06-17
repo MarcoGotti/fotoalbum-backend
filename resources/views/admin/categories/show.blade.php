@@ -12,10 +12,10 @@
     </header>
 
     <div class="container">
-        <div class="row">
+        <div class="row g-2">
             @forelse ($category->photos as $photo)
                 <div class="col-2">
-                    <div class="card border border-5 border-secondary rounded">
+                    <div class="card h-100 border border-5 border-secondary rounded">
                         <a href="{{ route('admin.photos.show', $photo) }}">
                             <img class="img-fluid" src="{{ $photo->upload }}" alt="no image">
                         </a>
