@@ -96,6 +96,7 @@ class PhotoController extends Controller
      */
     public function destroy(Photo $photo)
     {
+        $photo->categories()->detach();
         $photo->delete();
         return redirect()->back()->with('message', 'Successfully deleted');
     }
