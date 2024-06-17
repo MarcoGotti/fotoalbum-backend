@@ -71,13 +71,15 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
+        //dd($request->all());
         $validatedData = $request->validate([
             'name' => 'required|unique:categories,name' //da sistemare anti hacker
         ]);
-
+        $validatedData['slug'] = Str::of($request->name)->slug('-');
+        //dd($validatedData);
         $category->update($validatedData);
 
-        return to_route('admin.categories.index');
+        return redirect()->back()->with('message', 'You just modified the category');
     }
 
     /**

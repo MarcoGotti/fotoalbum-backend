@@ -11,10 +11,10 @@
         </div>
     </header>
 
-    <div class="container">
+    @include('admin.partials.success_message')
+    @include('admin.partials.form_errors')
 
-        @include('admin.partials.success_message')
-        @include('admin.partials.form_errors')
+    <div class="container mt-5" style="padding: 0 6rem;">
 
         <div class="table-responsive">
             <table class="table table-striped table-hover table-secondary align-middle">
@@ -31,7 +31,18 @@
                     @forelse ($categories as $cat)
                         <tr class="table-secondary">
                             <td scope="row">{{ $cat->id }}</td>
-                            <td>{{ $cat->name }}</td>
+                            <td>
+                                <form action="{{ route('admin.categories.update', $cat) }}" method="post">
+                                    @csrf
+                                    @method('patch')
+
+                                    <div class="mb-3">
+                                        <input type="text" class="w-50 form-control form-control-sm" name="name"
+                                            value="{{ $cat->name }}" />
+                                    </div>
+
+                                </form>
+                            </td>
                             <td>{{ $cat->slug }}</td>
                             <td>
                                 <div class="d-flex me-3">
@@ -125,7 +136,8 @@
                                 <input type="text"
                                     class="form-control form-control-sm @error('name') is-invalid                                   
                                 @enderror"
-                                    name="name" id="name" placeholder="es. Body paint" />
+                                    name="name" id="name" placeholder="es. Body paint"
+                                    value="{{ old('name') }}" />
                                 @error('name')
                                     <div class="text-danger"><strong>{{ old('name') }}</strong>: {{ $message }}</div>
                                 @enderror
