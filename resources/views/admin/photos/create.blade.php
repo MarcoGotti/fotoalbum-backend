@@ -18,7 +18,7 @@
         <form action="{{ route('admin.photos.store') }}" method="post">
             @csrf
 
-            <div class="mb-3">
+            <div>
                 <input type="text"
                     class="form-control form-control-sm @error('title') is-invalid                 
                 @enderror"
@@ -28,6 +28,28 @@
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
+
+            <div class="row flex-wrap my-5">
+                @forelse ($categories as $cat)
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="{{ $cat->id }}"
+                                id="cat-{{ $cat->id }}" name="categories[]"
+                                {{ in_array($cat->id, old('categories', [])) ? 'checked' : '' }} />
+                            <label class="form-check-label" for="cat-{{ $cat->id }}"> {{ $cat->name }} </label>
+                        </div>
+                    </div>
+
+                @empty
+                    <div class="p-3 text-bg-warning">
+                        <div>You haven't got any category in your database!</div>
+                        <div>I recommand you add a few categories to relate to your photos.</div>
+                    </div>
+                @endforelse
+
+            </div>
+
+
 
             {{-- <div class="d-flex flex-wrap border-1 border border-warning">
                 <h6 class="col-12 text-warning text-center">Upload the image ...</h6>
@@ -60,7 +82,7 @@
             </div>
 
 
-            <div class="mb-3">
+            <div class="my-5">
                 <label for="description" class="form-label"></label>
                 <textarea
                     class="form-control form-control-sm @error('description') is-invalid                 

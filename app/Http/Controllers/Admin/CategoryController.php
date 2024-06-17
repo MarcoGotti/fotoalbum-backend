@@ -28,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        // I don't need this view
+        //
     }
 
     /**
@@ -44,8 +44,6 @@ class CategoryController extends Controller
         $category->name = $validatedData['name'];
         $category->slug = Str::of($validatedData['name'])->slug('-');
         $category->save();
-
-        //Category::create($validatedData);
 
         return to_route('admin.categories.index');
     }
@@ -73,9 +71,7 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, Category $category)
     {
         //dd($request->all());
-        $validatedData = $request->validate([
-            'name' => ['required', Rule::unique('categories')->ignore($category->id)]
-        ]);
+        $validatedData = $request->validated();
         $validatedData['slug'] = Str::of($request->name)->slug('-');
         //dd($validatedData);
         $category->update($validatedData);

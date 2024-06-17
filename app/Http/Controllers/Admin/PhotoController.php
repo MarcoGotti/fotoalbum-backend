@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Photo;
 use App\Models\User;
+use App\Models\Category;
 use App\Http\Requests\StorePhotoRequest;
 use App\Http\Requests\UpdatePhotoRequest;
 use App\Http\Controllers\Controller;
@@ -31,7 +32,9 @@ class PhotoController extends Controller
     public function create()
     {
         $owner_data = User::all();
-        return view('admin.photos.create', compact('owner_data'));
+        $categories = Category::all();
+
+        return view('admin.photos.create', compact('owner_data', 'categories'));
     }
 
     /**
@@ -39,10 +42,13 @@ class PhotoController extends Controller
      */
     public function store(StorePhotoRequest $request)
     {
+
         $validatedData = $request->validated();
         $validatedData['slug'] = Str::of($request->title)->slug('-');
-        //dd($validatedData);
+
         $photo = Photo::create($validatedData);
+        $photo->categories()->attach($validatedData['categories']);
+
 
         return to_route('admin.photos.show', $photo)->with('message', 'You got it');
     }
