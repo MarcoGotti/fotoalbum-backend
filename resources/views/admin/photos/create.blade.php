@@ -2,7 +2,7 @@
 @section('pageTitle', 'Admin-add-photo')
 @section('content')
 
-    @include('admin.partials.form_errors')
+    @include('admin.photos.partials.form_errors')
 
     <header class="text-white py-4">
         <div class="container d-flex justify-content-between align-items-center">

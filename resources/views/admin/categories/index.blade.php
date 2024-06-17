@@ -12,7 +12,7 @@
     </header>
 
     @include('admin.partials.success_message')
-    @include('admin.partials.form_errors')
+    @include('admin.categories.partials.error_update')
 
     <div class="container mt-5" style="padding: 0 6rem;">
 
@@ -23,7 +23,8 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Slug</th>
-                        <th>Action</th>
+                        <th class="text-center">View all related Photos</th>
+                        <th class="text-end">Delete</th>
                     </tr>
                 </thead>
 
@@ -44,20 +45,18 @@
                                 </form>
                             </td>
                             <td>{{ $cat->slug }}</td>
+                            <td class="text-center">
+                                <a class="btn btn-success btn-sm" href="{{ route('admin.categories.show', $cat) }}">
+                                    <i class="fa fa-eye" aria-hidden="true"></i> View</a>
+                            </td>
                             <td>
                                 <div class="d-flex me-3">
-                                    <a class="text-black" href="{{ route('admin.categories.show', $cat) }}">
-                                        <i class="fa fa-eye" aria-hidden="true"></i></a>
 
-                                    <a class="text-black mx-auto" href="{{ route('admin.categories.edit', $cat) }}">
-                                        <i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                    <!-- Button trigger modal -->
-                                    <a class="text-black" data-bs-toggle="modal"
+                                    <!-- Destroy-action Button trigger modal -->
+                                    <a class="text-black ms-auto" data-bs-toggle="modal"
                                         data-bs-target="#modalId-{{ $cat->id }}"
                                         href="{{ route('admin.categories.show', $cat) }}">
                                         <i class="fa fa-trash" aria-hidden="true"></i></a>
-
-
 
                                     <!-- Modal -->
                                     <div class="modal fade" id="modalId-{{ $cat->id }}" tabindex="-1" role="dialog"
@@ -111,8 +110,8 @@
             {{ $categories->links('pagination::bootstrap-5') }}
         </div>
 
-        <!-- Button trigger modal -->
-        <a class="btn btn-warning border border-1 position-fixed bottom-0 end-0 m-5" data-bs-toggle="modal"
+        <!-- Create-action Button trigger modal -->
+        <a class="btn btn-danger border border-1 position-fixed bottom-0 end-0 m-5" data-bs-toggle="modal"
             data-bs-target="#modalCreate" href="{{ route('admin.categories.create') }}"><i class="fa fa-plus-square"
                 aria-hidden="true"></i>&nbsp; Add</a>
 
@@ -132,7 +131,6 @@
                             @csrf
 
                             <div class="mb-3">
-                                <label for="name" class="form-label">Name your Category</label>
                                 <input type="text"
                                     class="form-control form-control-sm @error('name') is-invalid                                   
                                 @enderror"

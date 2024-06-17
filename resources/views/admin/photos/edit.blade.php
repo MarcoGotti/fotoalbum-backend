@@ -2,7 +2,7 @@
 @section('pageTitle', 'Admin-edit-photo')
 @section('content')
 
-    @include('admin.partials.form_errors')
+    @include('admin.photos.partials.form_errors')
 
 
     <div class="container-fluid jumbotron_edit position-relative" style="background-image: url({{ $photo->upload }})">

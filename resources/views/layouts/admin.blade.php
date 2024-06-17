@@ -53,14 +53,20 @@
                             <a class="nav-link" href="{{ url('/') }}">{{ __('Home') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.photos.index') }}">{{ __('Library') }}</a>
+                            <a class="nav-link text-warning"
+                                href="{{ route('admin.photos.index') }}">{{ __('Library') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class=" nav-link text-warning" href="{{ route('admin.photos.create') }}"><i
-                                    class="fa fa-plus-square" aria-hidden="true"></i> Add</a>
+                                    class="fa fa-plus-square" aria-hidden="true"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.categories.index') }}">{{ __('Categories') }}</a>
+                            <a class="nav-link text-danger-emphasis"
+                                href="{{ route('admin.categories.index') }}">{{ __('Categories') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class=" nav-link text-danger-emphasis" href="{{ route('admin.photos.create') }}"><i
+                                    class="fa fa-plus-square" aria-hidden="true"></i></a>
                         </li>
                     </ul>
 
