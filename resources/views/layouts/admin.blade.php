@@ -59,6 +59,9 @@
                             <a class=" nav-link text-warning" href="{{ route('admin.photos.create') }}"><i
                                     class="fa fa-plus-square" aria-hidden="true"></i> Add</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.categories.index') }}">{{ __('Categories') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

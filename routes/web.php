@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PhotoController;
+use App\Http\Controllers\Admin\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,7 @@ Route::middleware(['auth', 'verified'])
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
         Route::resource('photos', PhotoController::class)->parameters(['photos' => 'photo:slug']);
+        Route::resource('categories', CategoryController::class)->parameters(['categories' => 'category:slug']);
     });
 
 
