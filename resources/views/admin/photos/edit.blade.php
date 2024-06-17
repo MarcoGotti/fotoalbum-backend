@@ -4,14 +4,12 @@
 
     @include('admin.photos.partials.form_errors')
 
-
     <div class="container-fluid jumbotron_edit position-relative" style="background-image: url({{ $photo->upload }})">
         <a class="btn btn-sm btn-secondary position" href="{{ route('admin.photos.index') }}">Back to
             list</a>
     </div>
 
     <div class="container py-5">
-
 
         <form action="{{ route('admin.photos.update', $photo) }}" method="post">
             @csrf
@@ -45,20 +43,20 @@
                             @endif
                         </div>
                     </div>
-
                 @empty
                     <div class="p-3 text-bg-warning">
                         <div>You haven't got any category in your database!</div>
                         <div>I recommand you add a few categories to relate to your photos.</div>
                     </div>
                 @endforelse
-
             </div>
 
             <div class="d-flex gap-3">
+
                 <div class="overflow-hidden border border-5 border-secondary rounded" style="height: 140px">
                     <img width="300" src="{{ $photo->upload }}" alt="">
                 </div>
+
                 <div class="d-flex w-25 flex-column">
                     <div>
                         <label for="upload" class="form-label">Insert the image url</label>
@@ -76,7 +74,6 @@
                         <input class="form-check-input" type="checkbox" value="" name="image_delete" disabled />
                         <label class="form-check-label" for="image_delete">Check to delete</label>
                     </div>
-
                 </div>
             </div>
 
@@ -93,9 +90,7 @@
             </div>
 
             <button class="btn btn-light" type="submit">Update</button>
-
         </form>
-
     </div>
 
 @endsection

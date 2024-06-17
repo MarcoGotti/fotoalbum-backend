@@ -46,12 +46,40 @@
                         <div>I recommand you add a few categories to relate to your photos.</div>
                     </div>
                 @endforelse
-
             </div>
 
+            <div>
+                <label for="upload" class="form-label">Insert the image url</label>
+                <input type="text"
+                    class="form-control @error('upload') is-invalid                 
+                @enderror"
+                    name="upload" aria-describedby="uploadUrlHelper" placeholder="es. https:// ...."
+                    value="{{ old('upload') }}" />
+                @error('upload')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="my-5">
+                <label for="description" class="form-label"></label>
+                <textarea
+                    class="form-control form-control-sm @error('description') is-invalid                 
+                @enderror"
+                    name="description" rows="3" placeholder="Description here">{{ old('description') }}</textarea>
+                @error('description')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <button class="btn btn-light" type="submit">Save</button>
+        </form>
+    </div>
+
+@endsection
 
 
-            {{-- <div class="d-flex flex-wrap border-1 border border-warning">
+
+{{-- <div class="d-flex flex-wrap border-1 border border-warning">
                 <h6 class="col-12 text-warning text-center">Upload the image ...</h6>
                 <div class="col-5 p-3">
                     <label for="upload" class="form-label text-warning">... from a Url</label>
@@ -68,35 +96,3 @@
                     <div id="uploadFileHelper" class="form-text">Search a file in your devices' storage</div>
                 </div>
             </div> --}}
-
-            <div>
-                <label for="upload" class="form-label">Insert the image url</label>
-                <input type="text"
-                    class="form-control @error('upload') is-invalid                 
-                @enderror"
-                    name="upload" aria-describedby="uploadUrlHelper" placeholder="es. https:// ...."
-                    value="{{ old('upload') }}" />
-                @error('upload')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-
-
-            <div class="my-5">
-                <label for="description" class="form-label"></label>
-                <textarea
-                    class="form-control form-control-sm @error('description') is-invalid                 
-                @enderror"
-                    name="description" rows="3" placeholder="Description here">{{ old('description') }}</textarea>
-                @error('description')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <button class="btn btn-light" type="submit">Save</button>
-
-        </form>
-
-    </div>
-
-@endsection

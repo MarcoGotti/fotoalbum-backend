@@ -17,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(15);
+        $categories = Category::paginate(10);
         $owner_data = User::all();
 
         return view('admin.categories.index', compact('categories', 'owner_data'));
@@ -37,7 +37,7 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|unique:categories,name' //da sistemare anti hacker
+            'name' => 'required|unique:categories,name'
         ]);
 
         $category = new Category();
@@ -45,7 +45,7 @@ class CategoryController extends Controller
         $category->slug = Str::of($validatedData['name'])->slug('-');
         $category->save();
 
-        return to_route('admin.categories.index');
+        return to_route('admin.categories.index')->with('message', 'Category added!');;
     }
 
     /**
@@ -70,10 +70,9 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //dd($request->all());
         $validatedData = $request->validated();
         $validatedData['slug'] = Str::of($request->name)->slug('-');
-        //dd($validatedData);
+
         $category->update($validatedData);
 
         return redirect()->back()->with('message', 'You just modified the category');
@@ -85,6 +84,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
+
         return redirect()->back()->with('message', 'Successfully deleted');
     }
 }

@@ -42,13 +42,11 @@ class PhotoController extends Controller
      */
     public function store(StorePhotoRequest $request)
     {
-
         $validatedData = $request->validated();
         $validatedData['slug'] = Str::of($request->title)->slug('-');
 
         $photo = Photo::create($validatedData);
         $photo->categories()->attach($validatedData['categories']);
-
 
         return to_route('admin.photos.show', $photo)->with('message', 'You got it');
     }
@@ -58,8 +56,8 @@ class PhotoController extends Controller
      */
     public function show(Photo $photo)
     {
-        //dd($photo);
         $owner_data = User::all();
+
         return view('admin.photos.show', compact('photo', 'owner_data'));
     }
 
@@ -79,10 +77,9 @@ class PhotoController extends Controller
      */
     public function update(UpdatePhotoRequest $request, Photo $photo)
     {
-        //dd($request->has('categories'));
         $validatedData = $request->validated();
         $validatedData['slug'] = Str::of($request->title)->slug('-');
-        //dd($validatedData);
+
         $photo->update($validatedData);
         if ($request->has('categories')) {
             $photo->categories()->sync($validatedData['categories']);

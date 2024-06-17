@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('category_photo', function (Blueprint $table) {
             $table->id();
+
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
 
             $table->unsignedBigInteger('photo_id');
             $table->foreign('photo_id')->references('id')->on('photos');
+
             $table->timestamps();
         });
     }

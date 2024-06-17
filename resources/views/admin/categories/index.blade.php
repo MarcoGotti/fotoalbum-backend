@@ -35,13 +35,12 @@
                             <td>
                                 <form action="{{ route('admin.categories.update', $cat) }}" method="post">
                                     @csrf
-                                    @method('patch')
+                                    @method('PUT')
 
                                     <div class="mb-3">
                                         <input type="text" class="w-50 form-control form-control-sm" name="name"
                                             value="{{ $cat->name }}" />
                                     </div>
-
                                 </form>
                             </td>
                             <td>{{ $cat->slug }}</td>
@@ -65,8 +64,6 @@
                                             <div class="modal-content text-light">
                                                 <div class="modal-header">
                                                     <p>You are about to delete this category</p>
-
-
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
@@ -80,14 +77,17 @@
                                                     <button type="button" class="btn btn-sm btn-secondary"
                                                         data-bs-dismiss="modal">
                                                         No, don't
-                                                        <form action="{{ route('admin.categories.destroy', $cat) }}"
-                                                            method="post">
-                                                            @csrf
-                                                            @method('DELETE')
+                                                    </button>
 
-                                                            <button class="btn btn-sm btn-danger" type="submit">Yes,
-                                                                delete</button>
-                                                        </form>
+                                                    <form action="{{ route('admin.categories.destroy', $cat) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+
+                                                        <button class="btn btn-sm btn-danger" type="submit">Yes,
+                                                            delete
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
