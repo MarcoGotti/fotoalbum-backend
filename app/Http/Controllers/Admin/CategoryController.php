@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateCategoryRequest;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class CategoryController extends Controller
 {
@@ -73,7 +74,7 @@ class CategoryController extends Controller
     {
         //dd($request->all());
         $validatedData = $request->validate([
-            'name' => 'required|unique:categories,name' //da sistemare anti hacker
+            'name' => ['required', Rule::unique('categories')->ignore($category->id)]
         ]);
         $validatedData['slug'] = Str::of($request->name)->slug('-');
         //dd($validatedData);
