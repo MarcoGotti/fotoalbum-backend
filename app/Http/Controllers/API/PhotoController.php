@@ -10,7 +10,7 @@ class PhotoController extends Controller
 {
     public function index()
     {
-        $photos = Photo::with('categories')->orderByDesc('id')->paginate();
+        $photos = Photo::with('categories')->orderByDesc('id')->paginate(12);
         return response()->json([
             'success' => true,
             'results' => $photos,
