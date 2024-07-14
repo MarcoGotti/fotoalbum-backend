@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\PhotoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,10 +23,6 @@ use App\Models\Category;
 Route::get('photos', [PhotoController::class, 'index']);
 //Route::get('photos/{photo}', [PhotoController::class, 'show']);
 
-Route::get('categories', function () {
-    $categories = Category::all();
-    return response()->json([
-        'success' => true,
-        'results' => $categories,
-    ]);
-});
+Route::get('categories', [CategoryController::class, 'index']);
+
+Route::get('categories/{category}', [CategoryController::class, 'show']);
