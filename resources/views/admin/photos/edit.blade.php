@@ -15,6 +15,34 @@
             @csrf
             @method('PUT')
 
+            @if ($errors->any())
+                <div class="form-check form-check-inline ">
+                    <input class="form-check-input" type="checkbox" name="is_highlight" id="is_highlight" value=""
+                        {{ old('is_highlight') ? 'checked' : '' }} />
+                    <label class="form-check-label" for="is_highlight">Highlighted exposition</label>
+                </div>
+            @else
+                <div class="form-check form-check-inline ">
+                    <input class="form-check-input" type="checkbox" name="is_highlight" id="is_highlight" value=""
+                        {{ $photo->is_highlight ? 'checked' : '' }} />
+                    <label class="form-check-label" for="is_highlight">Highlighted exposition</label>
+                </div>
+            @endif
+
+            @if ($errors->any())
+                <div class="form-check form-check-inline ">
+                    <input class="form-check-input" type="checkbox" name="is_draft" id="is_draft" value=""
+                        {{ old('is_draft') ? 'checked' : '' }} />
+                    <label class="form-check-label" for="is_draft">Don't expose</label>
+                </div>
+            @else
+                <div class="form-check form-check-inline ">
+                    <input class="form-check-input" type="checkbox" name="is_draft" id="is_draft" value=""
+                        {{ $photo->is_draft ? 'checked' : '' }} />
+                    <label class="form-check-label" for="is_draft">Don't expose</label>
+                </div>
+            @endif
+
             <div class="mb-3">
                 <input type="text"
                     class="form-control w-50 form-control-sm @error('title') is-invalid                 
@@ -33,7 +61,8 @@
                                 <input class="form-check-input" type="checkbox" value="{{ $cat->id }}"
                                     id="cat-{{ $cat->id }}" name="categories[]"
                                     {{ in_array($cat->id, old('categories', [])) ? 'checked' : '' }} />
-                                <label class="form-check-label" for="cat-{{ $cat->id }}"> {{ $cat->name }} </label>
+                                <label class="form-check-label" for="cat-{{ $cat->id }}"> {{ $cat->name }}
+                                </label>
                             @else
                                 <input class="form-check-input" type="checkbox" value="{{ $cat->id }}"
                                     id="cat-{{ $cat->id }}" name="categories[]"

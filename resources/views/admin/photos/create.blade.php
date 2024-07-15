@@ -3,8 +3,9 @@
 @section('content')
 
     @include('admin.photos.partials.form_errors')
+    @include('admin.partials.success_message')
 
-    <header class="text-white py-4">
+    <header class="text-white pt-4">
         <div class="container d-flex justify-content-between align-items-center">
             <h3>
                 Add Photo
@@ -18,7 +19,17 @@
         <form action="{{ route('admin.photos.store') }}" method="post">
             @csrf
 
-            <div>
+            <div class="form-check form-check-inline ">
+                <input class="form-check-input" type="checkbox" name="is_highlight" id="is_highlight" value=""
+                    {{ old('is_highlight') ? 'checked' : '' }} />
+                <label class="form-check-label" for="is_highlight">Highlighted exposition</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="is_draft" id="is_draft" value="" checked />
+                <label class="form-check-label" for="is_draft">Don't expose</label>
+            </div>
+
+            <div class="mt-4">
                 <input type="text"
                     class="form-control form-control-sm @error('title') is-invalid                 
                 @enderror"

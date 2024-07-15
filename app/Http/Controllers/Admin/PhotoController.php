@@ -34,6 +34,7 @@ class PhotoController extends Controller
         $owner_data = User::all();
         $categories = Category::all();
 
+
         return view('admin.photos.create', compact('owner_data', 'categories'));
     }
 
@@ -42,8 +43,20 @@ class PhotoController extends Controller
      */
     public function store(StorePhotoRequest $request)
     {
+        //dd($request->all());
+
         $validatedData = $request->validated();
         $validatedData['slug'] = Str::of($request->title)->slug('-');
+        if ($request->has('is_highlight')) {
+            $validatedData['is_highlight'] = 1;
+        } else {
+            $validatedData['is_highlight'] = 0;
+        }
+        $request->has('is_draft') ? $validatedData['is_draft'] = 1 : $validatedData['is_draft'] = 0;
+
+
+
+        //dd($validatedData);
 
         $photo = Photo::create($validatedData);
         $photo->categories()->attach($validatedData['categories']);
@@ -79,13 +92,15 @@ class PhotoController extends Controller
     {
         $validatedData = $request->validated();
         $validatedData['slug'] = Str::of($request->title)->slug('-');
+        $request->has('is_highlight') ? $validatedData['is_highlight'] = 1 : $validatedData['is_highlight'] = 0;
+        $request->has('is_draft') ? $validatedData['is_draft'] = 1 : $validatedData['is_draft'] = 0;
 
         $photo->update($validatedData);
         if ($request->has('categories')) {
             $photo->categories()->sync($validatedData['categories']);
         }
 
-        return to_route('admin.photos.show', $photo)->with('message', 'It\'s updated');
+        return to_route('admin.photos.index')->with('message', 'It\'s updated');
     }
 
     /**

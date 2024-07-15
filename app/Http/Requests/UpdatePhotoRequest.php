@@ -24,6 +24,7 @@ class UpdatePhotoRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'is_hightlight' => 'nullable',
             'title' => ['required', 'min:3', 'max:30', Rule::unique('photos')->ignore($this->photo->id)],
             'categories' => 'exists:categories,id',
             'upload' => ['required', 'max:300', Rule::unique('photos')->ignore($this->photo->id)],

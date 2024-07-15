@@ -56,11 +56,11 @@
                                     </div>
                                 </div>
                             </td>
-                            <td
-                                class="{{ $photo->is_draft ? 'text-danger' : '' }}
-                                {{ $photo->is_highlight ? 'text-warning' : '' }} fw-bold">
-                                {{ $photo->is_draft ? 'Still draft' : '' }}
-                                {{ $photo->is_highlight ? 'Hightlight' : '' }}
+                            <td>
+                                <div class="{{ $photo->is_draft ? 'text-danger' : '' }} fw-bold">
+                                    {{ $photo->is_draft ? 'Still draft' : '' }}</div>
+                                <div class="{{ $photo->is_highlight ? 'text-warning' : '' }} fw-bold">
+                                    {{ $photo->is_highlight ? 'Hightlight' : '' }}</div>
                             </td>
 
                             <td>{{ $photo->title }}</td>
