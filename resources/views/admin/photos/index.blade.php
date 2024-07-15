@@ -21,6 +21,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Upload</th>
+                        <th>Remarks</th>
                         <th>Title</th>
                         <th>Slug</th>
                         <th>Action</th>
@@ -30,7 +31,10 @@
                 <tbody class="table-group-divider">
                     @forelse ($photos as $photo)
                         <tr class="table-secondary">
-                            <td scope="row">{{ $photo->id }}</td>
+                            <td scope="row">
+                                <div>{{ $photo->id }}</div>
+
+                            </td>
                             <td>
                                 <div class="wrapper overflow-y-hidden" data-bs-toggle="modal"
                                     data-bs-target="#modalId-{{ $photo->id }}">
@@ -52,6 +56,13 @@
                                     </div>
                                 </div>
                             </td>
+                            <td
+                                class="{{ $photo->is_draft ? 'text-danger' : '' }}
+                                {{ $photo->is_highlight ? 'text-warning' : '' }} fw-bold">
+                                {{ $photo->is_draft ? 'Still draft' : '' }}
+                                {{ $photo->is_highlight ? 'Hightlight' : '' }}
+                            </td>
+
                             <td>{{ $photo->title }}</td>
                             <td>{{ $photo->slug }}</td>
                             <td>
@@ -59,7 +70,8 @@
                                     <a class="text-black" href="{{ route('admin.photos.show', $photo) }}">
                                         <i class="fa fa-eye" aria-hidden="true"></i></a>
 
-                                    <a class="text-black mx-auto" href="{{ route('admin.photos.edit', $photo) }}">
+                                    <a class="{{ sizeof($photo->categories) == 0 ? '' : 'text-black' }} mx-auto"
+                                        href="{{ route('admin.photos.edit', $photo) }}">
                                         <i class="fa fa-pencil" aria-hidden="true"></i></a>
                                     <!-- Button trigger modal -->
                                     <a class="text-black" data-bs-toggle="modal"
