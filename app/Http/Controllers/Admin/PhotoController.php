@@ -26,6 +26,14 @@ class PhotoController extends Controller
         return view('admin.photos.index', compact('photos', 'owner_data'));
     }
 
+    public function drafts()
+    {
+        $photos = Photo::orderByDesc('id')->where('is_draft', 1)->get();
+        $owner_data = User::all();
+
+        return view('admin.photos.drafts', compact('photos', 'owner_data'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

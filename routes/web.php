@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Models\Photo;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,7 @@ Route::middleware(['auth', 'verified'])
 
         Route::resource('photos', PhotoController::class)->parameters(['photos' => 'photo:slug']);
         Route::resource('categories', CategoryController::class)->parameters(['categories' => 'category:slug']);
+        Route::get('drafts', [PhotoController::class, 'drafts'])->name('admin.drafts');
     });
 
 
