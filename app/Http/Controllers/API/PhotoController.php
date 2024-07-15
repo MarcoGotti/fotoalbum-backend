@@ -18,14 +18,14 @@ class PhotoController extends Controller
 
             ]);
         }
-        $photos = Photo::with('categories')->orderByDesc('id')->paginate(12); //->where('is_highlight', 1)
+        $photos = Photo::with('categories')->orderByDesc('id')->where('is_draft', false)->paginate(12);
         return response()->json([
             'success' => true,
             'results' => $photos,
         ]);
     }
 
-    public function show($id)
+    /* public function show($id)
     {
         $photo = Photo::with('categories')->find($id);
 
@@ -40,5 +40,5 @@ class PhotoController extends Controller
                 'result' => '404 Not found'
             ]);
         }
-    }
+    } */
 }
