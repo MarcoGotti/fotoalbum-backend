@@ -8,9 +8,17 @@ use App\Models\Photo;
 
 class PhotoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $photos = Photo::with('categories')->orderByDesc('id')->paginate(12);
+        if ($request->has('is_highlight')) {
+            return response()->json([
+                //'is_highlight' => $request->is_highlight,
+                'success' => true,
+                'results' => Photo::with('categories')->orderByDesc('id')->where('is_highlight', true)->paginate()
+
+            ]);
+        }
+        $photos = Photo::with('categories')->orderByDesc('id')->paginate(12); //->where('is_highlight', 1)
         return response()->json([
             'success' => true,
             'results' => $photos,
