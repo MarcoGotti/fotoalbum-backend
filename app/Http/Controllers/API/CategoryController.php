@@ -22,14 +22,11 @@ class CategoryController extends Controller
     {
         $category = Category::with('photos')->find($id);
         /* $category->photos = array_filter($category->photos, function ($photo) {
-            return $photo->is_draft == 1;
+            return $photo['is_draft'] == 1;
         }); */
         return response()->json([
             'success' => true,
             'results' => $category,
-            /* 'more' => array_filter($category->photos, function ($photo) {
-                return $photo['is_draft'] == 1;
-            }), */
         ]);
     }
 }
