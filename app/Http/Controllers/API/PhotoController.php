@@ -14,8 +14,8 @@ class PhotoController extends Controller
             return response()->json([
                 //'is_highlight' => $request->is_highlight,
                 'success' => true,
-                'results' => Photo::with('categories')->orderByDesc('id')->where('is_highlight', true)->paginate()
-
+                'results' => Photo::with('categories')->orderByDesc('id')->where('is_highlight', true)->get()
+                //con ->paginate() i links ...photos?page=n sono gli stessi di All-photos
             ]);
         }
         $photos = Photo::with('categories')->orderByDesc('id')->where('is_draft', false)->paginate(12);
